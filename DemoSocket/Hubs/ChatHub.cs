@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.SignalR;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.SignalR;
 
 namespace DemoSocket.Hubs
 {
@@ -6,7 +7,7 @@ namespace DemoSocket.Hubs
     {
         public void NewMessage(string message)
         {
-
+            Clients.All.SendAsync("Message", message);
         }
     }
 }
