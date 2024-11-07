@@ -12,7 +12,17 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddSignalR();
 
+builder.Services.AddCors(b => b.AddDefaultPolicy(o =>
+{
+    o.AllowAnyMethod();
+    o.WithHeaders();
+    o.AllowCredentials();
+    o.WithOrigins("http://localhost:4200");
+}));
+
 var app = builder.Build();
+
+app.UseCors();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
